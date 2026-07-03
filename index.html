@@ -3,778 +3,1707 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dr. Aseel Hisham | Nutrition &amp; Obesity Management</title>
-<meta name="description" content="Dr. Aseel Hisham — Nutrition & Obesity Management. Personalized diet plans, Mounjaro / GLP-1 weight management, and general nutrition guidance.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@300;400;500;700&family=Caveat:wght@600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --teal-deep:#006A70;
-    --teal-mid:#0E8A87;
-    --teal-soft:#E3EEEE;
-    --gold:#CE9F4C;
-    --gold-soft:#F2E3C2;
-    --paper:#FAF8F4;
-    --ink:#15302E;
-    --ink-soft:#4C6564;
-    --line: rgba(0,106,112,0.14);
-    --radius-lg: 28px;
-    --radius-md: 16px;
-    --shadow: 0 14px 40px rgba(0,60,63,0.14);
-  }
-
-  *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    margin:0;
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Tajawal','Cairo',sans-serif;
-    -webkit-font-smoothing:antialiased;
-    overflow-x:hidden;
-  }
-  [dir="ltr"] body{ font-family:'Cairo','Tajawal',sans-serif; }
-
-  h1,h2,h3,.display{
-    font-family:'Cairo',sans-serif;
-    margin:0;
-    letter-spacing:-0.01em;
-  }
-
-  a{color:inherit; text-decoration:none;}
-  img{max-width:100%; display:block;}
-  button{font-family:inherit; cursor:pointer;}
-
-  .wrap{
-    max-width:1180px;
-    margin:0 auto;
-    padding:0 28px;
-  }
-
-  /* ---------- NAV ---------- */
-  header.nav{
-    position:sticky; top:0; z-index:60;
-    background:rgba(250,248,244,0.86);
-    backdrop-filter: blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  .nav-inner{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:16px 28px;
-    max-width:1180px; margin:0 auto;
-  }
-  .brand{
-    display:flex; align-items:center; gap:12px;
-    font-weight:800; font-size:1.05rem; color:var(--teal-deep);
-  }
-  .brand-mark{
-    width:38px; height:38px; border-radius:50%;
-    background:linear-gradient(145deg, var(--teal-mid), var(--teal-deep));
-    display:flex; align-items:center; justify-content:center;
-    color:#fff; font-family:'Caveat',cursive; font-size:1.3rem; font-weight:600;
-  }
-  .brand small{display:block; font-weight:400; font-size:0.68rem; color:var(--ink-soft); letter-spacing:.03em;}
-
-  nav.links{ display:flex; align-items:center; gap:28px; }
-  nav.links a{
-    font-size:.92rem; font-weight:600; color:var(--ink);
-    position:relative; padding:6px 0;
-  }
-  nav.links a::after{
-    content:''; position:absolute; bottom:0; right:0; left:auto;
-    width:0; height:2px; background:var(--gold);
-    transition:width .25s ease;
-  }
-  [dir="ltr"] nav.links a::after{ right:auto; left:0; }
-  nav.links a:hover::after{ width:100%; }
-
-  .nav-actions{ display:flex; align-items:center; gap:14px; }
-  .lang-toggle{
-    border:1px solid var(--teal-deep); background:transparent;
-    color:var(--teal-deep); padding:7px 14px; border-radius:999px;
-    font-size:.82rem; font-weight:700; letter-spacing:.02em;
-  }
-  .lang-toggle:hover{ background:var(--teal-deep); color:#fff; }
-
-  .btn-cta{
-    display:inline-flex; align-items:center; gap:8px;
-    background:var(--gold); color:#2b2107;
-    padding:10px 20px; border-radius:999px;
-    font-weight:700; font-size:.88rem; border:none;
-    box-shadow:0 8px 20px rgba(206,159,76,0.35);
-    transition:transform .2s ease, box-shadow .2s ease;
-  }
-  .btn-cta:hover{ transform:translateY(-2px); box-shadow:0 12px 26px rgba(206,159,76,0.45); }
-  .btn-cta svg{ width:16px; height:16px; }
-
-  .burger{ display:none; background:none; border:none; padding:6px; }
-  .burger span{ display:block; width:24px; height:2px; background:var(--teal-deep); margin:5px 0; border-radius:2px;}
-
-  /* ---------- HERO ---------- */
-  .hero{
-    position:relative;
-    min-height:92vh;
-    display:flex; align-items:center;
-    overflow:hidden;
-    background:var(--teal-deep);
-  }
-  .hero-slides{ position:absolute; inset:0; }
-  .hero-slide{
-    position:absolute; inset:0;
-    background-size:cover; background-position:center;
-    opacity:0; transition:opacity 1.4s ease;
-  }
-  .hero-slide.active{ opacity:1; }
-  .hero-slides::after{
-    content:'';
-    position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,42,45,0.72) 0%, rgba(0,58,61,0.82) 55%, rgba(0,30,32,0.92) 100%);
-  }
-
-  .hero-content{
-    position:relative; z-index:2;
-    max-width:1180px; margin:0 auto; padding:0 28px;
-    width:100%;
-  }
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:10px;
-    color:var(--gold-soft); font-size:.82rem; font-weight:600;
-    letter-spacing:.12em; text-transform:uppercase;
-    border:1px solid rgba(242,227,194,0.35);
-    padding:7px 16px; border-radius:999px;
-    margin-bottom:26px;
-  }
-  .hero h1{
-    color:#fff; font-size:clamp(2.3rem, 5vw, 4rem);
-    font-weight:800; line-height:1.12; max-width:820px;
-  }
-  .hero .signature{
-    font-family:'Caveat',cursive; font-weight:600;
-    color:var(--gold-soft); font-size:clamp(1.8rem,3.4vw,2.6rem);
-    display:block; margin-top:10px;
-  }
-  [dir="rtl"] .hero .signature{ font-family:'Cairo',sans-serif; font-size:clamp(1.5rem,2.6vw,2rem); font-weight:700;}
-  .hero p.sub{
-    color:rgba(255,255,255,0.86); font-size:1.08rem; line-height:1.8;
-    max-width:560px; margin-top:22px;
-  }
-  .hero-actions{ display:flex; gap:16px; margin-top:38px; flex-wrap:wrap; }
-  .btn-outline{
-    display:inline-flex; align-items:center; gap:8px;
-    border:1.5px solid rgba(255,255,255,0.55); color:#fff;
-    padding:11px 22px; border-radius:999px; font-weight:600; font-size:.9rem;
-  }
-  .btn-outline:hover{ border-color:#fff; background:rgba(255,255,255,0.08); }
-
-  .hero-dots{
-    position:absolute; bottom:34px; z-index:3;
-    display:flex; gap:9px;
-    inset-inline-start:28px;
-  }
-  .hero-dots button{
-    width:26px; height:4px; border-radius:4px; border:none;
-    background:rgba(255,255,255,0.35);
-    transition:background .3s ease, width .3s ease;
-  }
-  .hero-dots button.active{ background:var(--gold); width:40px; }
-
-  .stat-strip{
-    position:relative; z-index:2;
-    display:flex; gap:0; margin-top:56px; flex-wrap:wrap;
-    border-top:1px solid rgba(255,255,255,0.2); padding-top:26px; max-width:720px;
-  }
-  .stat{ padding-inline-end:38px; }
-  .stat b{ color:#fff; font-size:1.6rem; font-family:'Cairo',sans-serif; display:block;}
-  .stat span{ color:rgba(255,255,255,0.7); font-size:.8rem; }
-
-  /* ---------- SECTION HEADERS ---------- */
-  .section{ padding:110px 0; }
-  .section.tight{ padding:80px 0; }
-  .tag{
-    display:inline-block; color:var(--teal-deep); font-weight:700;
-    font-size:.8rem; letter-spacing:.1em; text-transform:uppercase;
-    background:var(--teal-soft); padding:6px 14px; border-radius:999px;
-    margin-bottom:18px;
-  }
-  .section-head{ max-width:640px; margin-bottom:56px; }
-  .section-head h2{ font-size:clamp(1.8rem,3.4vw,2.6rem); font-weight:800; color:var(--ink); line-height:1.25;}
-  .section-head p{ color:var(--ink-soft); font-size:1.02rem; line-height:1.85; margin-top:14px; }
-
-  /* ---------- ABOUT ---------- */
-  .about{ display:grid; grid-template-columns: 0.85fr 1.15fr; gap:70px; align-items:center; }
-  .about-photo{
-    position:relative;
-  }
-  .about-photo .frame{
-    border-radius:var(--radius-lg);
-    overflow:hidden;
-    box-shadow:var(--shadow);
-    aspect-ratio: 4/5;
-    background:var(--teal-soft);
-  }
-  .about-photo .frame img{ width:100%; height:100%; object-fit:cover; }
-  .about-photo .tab{
-    position:absolute; bottom:-26px; inset-inline-start:-26px;
-    background:var(--teal-deep); color:#fff;
-    padding:18px 24px; border-radius:var(--radius-md);
-    box-shadow:var(--shadow);
-    font-family:'Cairo',sans-serif;
-  }
-  .about-photo .tab b{ display:block; font-size:1.5rem; }
-  .about-photo .tab span{ font-size:.75rem; color:var(--gold-soft); letter-spacing:.05em;}
-
-  .about-text h3{ font-size:1.9rem; font-weight:800; margin-bottom:18px; }
-  .about-text p{ color:var(--ink-soft); line-height:1.9; font-size:1.02rem; margin-bottom:16px;}
-  .cred-list{ list-style:none; padding:0; margin:28px 0 0; display:grid; gap:14px; }
-  .cred-list li{ display:flex; gap:12px; align-items:flex-start; font-size:.95rem; color:var(--ink);}
-  .cred-list svg{ flex:none; width:20px; height:20px; color:var(--gold); margin-top:2px;}
-
-  /* ---------- SERVICES ---------- */
-  .services-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:26px; }
-  .service-card{
-    background:#fff; border:1px solid var(--line); border-radius:var(--radius-lg);
-    padding:34px 28px; transition:transform .25s ease, box-shadow .25s ease;
-  }
-  .service-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
-  .service-icon{
-    width:54px; height:54px; border-radius:16px;
-    background:var(--teal-soft); color:var(--teal-deep);
-    display:flex; align-items:center; justify-content:center;
-    margin-bottom:22px;
-  }
-  .service-icon svg{ width:26px; height:26px; }
-  .service-card h4{ font-family:'Cairo',sans-serif; font-size:1.15rem; font-weight:700; margin-bottom:10px;}
-  .service-card p{ color:var(--ink-soft); font-size:.92rem; line-height:1.8; }
-  .service-card .pill{
-    display:inline-block; margin-top:16px; font-size:.72rem; font-weight:700;
-    color:var(--gold); letter-spacing:.06em; text-transform:uppercase;
-    background:var(--gold-soft); padding:4px 12px; border-radius:999px;
-  }
-
-  /* ---------- GALLERY ---------- */
-  .gallery-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows:150px;
-    gap:14px;
-  }
-  .gallery-grid a{
-    position:relative; overflow:hidden; border-radius:var(--radius-md);
-    display:block;
-  }
-  .gallery-grid img{
-    width:100%; height:100%; object-fit:cover;
-    transition:transform .5s ease;
-  }
-  .gallery-grid a:hover img{ transform:scale(1.08); }
-  .gallery-grid a::after{
-    content:''; position:absolute; inset:0;
-    background:linear-gradient(180deg, rgba(0,0,0,0) 60%, rgba(0,50,52,0.55));
-    opacity:0; transition:opacity .3s ease;
-  }
-  .gallery-grid a:hover::after{ opacity:1; }
-  .g1{ grid-column:span 2; grid-row:span 2; }
-  .g4{ grid-column:span 2; }
-
-  /* ---------- FAQ ---------- */
-  .faq-list{ display:grid; gap:14px; max-width:820px; }
-  .faq-item{
-    background:#fff; border:1px solid var(--line); border-radius:var(--radius-md);
-    overflow:hidden;
-  }
-  .faq-q{
-    display:flex; align-items:center; justify-content:space-between;
-    padding:20px 26px; font-weight:700; font-size:1rem;
-    background:none; border:none; width:100%; text-align:inherit; color:var(--ink);
-  }
-  .faq-q svg{ width:18px; height:18px; flex:none; transition:transform .3s ease; color:var(--teal-deep);}
-  .faq-item.open .faq-q svg{ transform:rotate(45deg); }
-  .faq-a{
-    max-height:0; overflow:hidden; transition:max-height .35s ease;
-    padding:0 26px;
-  }
-  .faq-item.open .faq-a{ max-height:280px; padding-bottom:22px; }
-  .faq-a p{ color:var(--ink-soft); line-height:1.85; font-size:.95rem; margin:0; }
-
-  /* ---------- CONTACT / CTA BAND ---------- */
-  .cta-band{
-    background:linear-gradient(120deg, var(--teal-deep), var(--teal-mid));
-    border-radius:var(--radius-lg);
-    padding:64px 56px;
-    display:flex; align-items:center; justify-content:space-between; gap:40px;
-    flex-wrap:wrap;
-    color:#fff;
-    position:relative; overflow:hidden;
-  }
-  .cta-band::before{
-    content:''; position:absolute; inset-inline-end:-60px; top:-60px;
-    width:220px; height:220px; border-radius:50%;
-    background:rgba(255,255,255,0.08);
-  }
-  .cta-band h3{ font-size:1.9rem; font-weight:800; max-width:420px; position:relative;}
-  .cta-band p{ color:rgba(255,255,255,0.82); margin-top:10px; max-width:420px; position:relative;}
-  .cta-band .btn-cta{ position:relative; }
-
-  /* ---------- FOOTER ---------- */
-  footer{ background:#0B2C2C; color:rgba(255,255,255,0.75); padding:60px 0 26px; margin-top:110px;}
-  .footer-grid{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:44px; padding-bottom:36px; border-bottom:1px solid rgba(255,255,255,0.1);}
-  .footer-grid h5{ color:#fff; font-family:'Cairo',sans-serif; font-size:.95rem; margin-bottom:18px;}
-  .footer-grid ul{ list-style:none; padding:0; margin:0; display:grid; gap:10px; font-size:.88rem;}
-  .footer-brand{ display:flex; align-items:center; gap:12px; margin-bottom:14px;}
-  .footer-bottom{ display:flex; justify-content:space-between; padding-top:22px; font-size:.8rem; flex-wrap:wrap; gap:10px;}
-  .disclaimer{ font-size:.78rem; color:rgba(255,255,255,0.45); max-width:560px; line-height:1.7;}
-
-  /* ---------- WHATSAPP FLOAT ---------- */
-  .wa-float{
-    position:fixed; bottom:26px; inset-inline-end:26px; z-index:80;
-    width:58px; height:58px; border-radius:50%;
-    background:#25D366; display:flex; align-items:center; justify-content:center;
-    box-shadow:0 10px 26px rgba(37,211,102,0.45);
-    animation: pulse 2.4s infinite;
-  }
-  .wa-float svg{ width:28px; height:28px; fill:#fff; }
-  @keyframes pulse{
-    0%{ box-shadow:0 0 0 0 rgba(37,211,102,0.5); }
-    70%{ box-shadow:0 0 0 14px rgba(37,211,102,0); }
-    100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); }
-  }
-
-  /* ---------- REVEAL ANIM ---------- */
-  .reveal{ opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease; }
-  .reveal.in{ opacity:1; transform:translateY(0); }
-
-  /* ---------- RESPONSIVE ---------- */
-  @media (max-width: 900px){
-    nav.links{ display:none; }
-    .burger{ display:block; }
-    .about{ grid-template-columns:1fr; }
-    .about-photo{ max-width:340px; margin:0 auto; }
-    .services-grid{ grid-template-columns:1fr; }
-    .gallery-grid{ grid-template-columns:repeat(2,1fr); grid-auto-rows:140px; }
-    .g1{ grid-column:span 2; grid-row:span 1; }
-    .footer-grid{ grid-template-columns:1fr; }
-    .cta-band{ padding:44px 28px; }
-  }
-  @media (prefers-reduced-motion: reduce){
-    .reveal{ transition:none; opacity:1; transform:none; }
-    .hero-slide{ transition:none; }
-    .wa-float{ animation:none; }
-  }
+<title>Dr. Aseel Hisham | Clinical Nutrition & Obesity Management</title>
+​<meta name="description" content="Premium clinical nutrition and obesity management by Dr. Aseel Hisham. Personalized evidence-based weight loss programs and lifestyle modifications.">
+<meta name="keywords" content="Dr Aseel Hisham, Clinical Nutrition, Obesity Management, Weight Loss Clinic, Dietitian, Egypt, Nutritionist">
+<meta name="theme-color" content="#0d2c2a">
+<link rel="canonical" href="[https://draseelhisham.com](https://draseelhisham.com)">
+​<meta property="og:type" content="website">
+<meta property="og:url" content="[https://draseelhisham.com](https://draseelhisham.com)">
+<meta property="og:title" content="Dr. Aseel Hisham | Clinical Nutrition & Obesity Management">
+<meta property="og:description" content="Premium clinical nutrition and obesity management by Dr. Aseel Hisham. Personalized evidence-based care.">
+<meta property="og:image" content="[https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000](https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000)⁠�">
+​<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="[https://draseelhisham.com](https://draseelhisham.com)">
+<meta property="twitter:title" content="Dr. Aseel Hisham | Clinical Nutrition & Obesity Management">
+<meta property="twitter:description" content="Premium clinical nutrition and obesity management by Dr. Aseel Hisham.">
+<meta property="twitter:image" content="[https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000](https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000)⁠�">
+​<link rel="apple-touch-icon" sizes="180x180" href="data:image/svg+xml,<svg xmlns=%22[http://www.w3.org/2000/svg%22](http://www.w3.org/2000/svg%22) viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/svg+xml,<svg xmlns=%22[http://www.w3.org/2000/svg%22](http://www.w3.org/2000/svg%22) viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👑</text></svg>">
+​<link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+<link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+<link href="[https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap](https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap)" rel="stylesheet">
+​<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "MedicalClinic",
+"name": "Dr. Aseel Hisham Clinical Nutrition & Obesity Management",
+"image": "https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000⁠�",
+"telephone": "+201092910870",
+"url": "https://draseelhisham.com",
+"address": {
+"@type": "PostalAddress",
+"addressLocality": "Cairo",
+"addressCountry": "EG"
+},
+"availableService": [
+{
+"@type": "MedicalTherapy",
+"name": "Clinical Nutrition"
+},
+{
+"@type": "MedicalTherapy",
+"name": "Obesity Management"
+}
+]
+}
+</script>
+​<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "What can I expect during my first consultation?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Your first visit includes a detailed medical assessment, body composition analysis, and the framework for your personalized plan."
+}
+},
+{
+"@type": "Question",
+"name": "Are the diet plans restrictive?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "No, our plans are evidence-based, highly customized, and focused on sustainable lifestyle shifts rather than deprivation."
+}
+}
+]
+}
+</script>
+​<style>
+/* CSS RESET & VARIABLES */
+:root {
+--primary: #0d2c2a;
+--primary-light: #16423f;
+--emerald: #2a6f67;
+--gold: #d4af37;
+--gold-light: #f3e5ab;
+--white: #ffffff;
+--beige: #f9f6f0;
+--gray-text: #555555;
+--light-gray: #ecebe6;
+--glass: rgba(255, 255, 255, 0.08);
+--glass-border: rgba(255, 255, 255, 0.15);
+--shadow-premium: 0 20px 40px rgba(0, 0, 0, 0.06);
+--font-ar: 'Alexandria', sans-serif;
+--font-en: 'Playfair Display', serif;
+--transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+​* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+​html {
+scroll-behavior: smooth;
+font-size: 16px;
+overflow-x: hidden;
+}
+​body {
+font-family: var(--font-ar);
+background-color: var(--beige);
+color: var(--primary);
+line-height: 1.6;
+overflow-x: hidden;
+}
+​body.en {
+font-family: var(--font-en);
+}
+​/* LTR/RTL Structural Resets */
+html[dir="rtl"] .en-only,
+html[dir="ltr"] .ar-only {
+display: none !important;
+}
+​/* SCROLL PROGRESS */
+#scroll-progress {
+position: fixed;
+top: 0;
+left: 0;
+width: 0%;
+height: 4px;
+background: linear-gradient(90deg, var(--gold), var(--emerald));
+z-index: 1001;
+transition: width 0.1s linear;
+}
+​/* ACCESSIBILITY */
+a:focus-visible, button:focus-visible {
+outline: 3px solid var(--gold);
+outline-offset: 2px;
+}
+​@media (prefers-reduced-motion: reduce) {
+* {
+animation-duration: 0.01ms !important;
+animation-iteration-count: 1 !important;
+transition-duration: 0.01ms !important;
+scroll-behavior: auto !important;
+}
+}
+​/* TYPOGRAPHY & REUSABLE COMPONENTS */
+h1, h2, h3, h4 {
+font-weight: 700;
+}
+​.section-header {
+text-align: center;
+margin-bottom: 5rem;
+position: relative;
+}
+​.section-header h2 {
+font-size: 2.5rem;
+color: var(--primary);
+margin-bottom: 1rem;
+}
+​.section-header::after {
+content: '';
+display: block;
+width: 60px;
+height: 3px;
+background: var(--gold);
+margin: 0 auto;
+margin-top: 1.2rem;
+border-radius: 2px;
+}
+​.container {
+width: 100%;
+max-width: 1200px;
+margin: 0 auto;
+padding: 0 2rem;
+}
+​/* BUTTONS */
+.btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 1rem 2.5rem;
+border-radius: 50px;
+font-weight: 600;
+text-decoration: none;
+cursor: pointer;
+position: relative;
+overflow: hidden;
+transition: var(--transition);
+border: none;
+font-size: 1rem;
+}
+​.btn-primary {
+background: linear-gradient(135deg, var(--primary), var(--primary-light));
+color: var(--white);
+box-shadow: 0 10px 20px rgba(13, 44, 42, 0.2);
+}
+​.btn-primary:hover {
+transform: translateY(-3px);
+box-shadow: 0 15px 30px rgba(13, 44, 42, 0.3);
+color: var(--gold-light);
+}
+​.btn-outline {
+background: transparent;
+border: 2px solid var(--gold);
+color: var(--white);
+}
+​.btn-outline:hover {
+background: var(--gold);
+color: var(--primary);
+transform: translateY(-3px);
+}
+​/* INTERSECTION OBSERVER ANIMATION CLASSSES */
+.fade-up-element {
+opacity: 0;
+transform: translateY(40px);
+transition: opacity 0.8s ease, transform 0.8s ease;
+}
+​.fade-up-element.visible {
+opacity: 1;
+transform: translateY(0);
+}
+​/* PREMIUM NAVBAR */
+header {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+background: rgba(13, 44, 42, 0.8);
+backdrop-filter: blur(15px);
+-webkit-backdrop-filter: blur(15px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+transition: var(--transition);
+}
+​.nav-container {
+display: flex;
+justify-content: space-between;
+align-items: center;
+height: 90px;
+padding: 0 2rem;
+max-width: 1400px;
+margin: 0 auto;
+}
+​.logo {
+color: var(--white);
+text-decoration: none;
+display: flex;
+flex-direction: column;
+}
+​.logo .brand-name {
+font-size: 1.4rem;
+font-weight: 700;
+letter-spacing: 1px;
+background: linear-gradient(135deg, var(--white), var(--gold-light));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+​.logo .brand-sub {
+font-size: 0.8rem;
+color: var(--gold);
+text-transform: uppercase;
+letter-spacing: 2px;
+margin-top: 2px;
+}
+​.nav-menu {
+display: flex;
+gap: 2.5rem;
+list-style: none;
+align-items: center;
+}
+​.nav-link {
+color: rgba(255, 255, 255, 0.85);
+text-decoration: none;
+font-weight: 500;
+font-size: 0.95rem;
+transition: var(--transition);
+position: relative;
+padding: 0.5rem 0;
+}
+​.nav-link::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 0%;
+height: 2px;
+background-color: var(--gold);
+transition: var(--transition);
+}
+​.nav-link:hover {
+color: var(--white);
+}
+​.nav-link:hover::after {
+width: 100%;
+}
+​.lang-toggle {
+background: rgba(255, 255, 255, 0.1);
+border: 1px solid var(--glass-border);
+color: var(--white);
+padding: 0.5rem 1.2rem;
+border-radius: 30px;
+cursor: pointer;
+font-weight: 600;
+transition: var(--transition);
+}
+​.lang-toggle:hover {
+background: var(--gold);
+color: var(--primary);
+}
+​.menu-toggle {
+display: none;
+flex-direction: column;
+gap: 6px;
+background: none;
+border: none;
+cursor: pointer;
+}
+​.menu-toggle span {
+width: 30px;
+height: 2px;
+background-color: var(--white);
+transition: var(--transition);
+}
+​/* LUXURY HERO SECTION */
+#hero {
+position: relative;
+height: 100vh;
+width: 100%;
+overflow: hidden;
+display: flex;
+align-items: center;
+color: var(--white);
+}
+​.hero-slider {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 1;
+}
+​.slide {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+opacity: 0;
+transition: opacity 1.5s ease-in-out;
+background-size: cover;
+background-position: center;
+}
+​.slide.active {
+opacity: 1;
+animation: kenBurns 4s ease-out forwards;
+}
+​@keyframes kenBurns {
+0% { transform: scale(1); }
+100% { transform: scale(1.08); }
+}
+​.hero-overlay {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: linear-gradient(to bottom, rgba(13, 44, 42, 0.85), rgba(13, 44, 42, 0.95));
+z-index: 2;
+}
+​.hero-content {
+position: relative;
+z-index: 3;
+width: 100%;
+padding-top: 80px;
+}
+​.hero-text-wrapper {
+max-width: 800px;
+margin-bottom: 4rem;
+}
+​.hero-content h1 {
+font-size: 3.5rem;
+line-height: 1.2;
+margin-bottom: 1.5rem;
+font-weight: 900;
+}
+​.hero-content h1 span {
+color: var(--gold);
+}
+​.hero-content p {
+font-size: 1.25rem;
+color: rgba(255, 255, 255, 0.8);
+margin-bottom: 2.5rem;
+}
+​.hero-actions {
+display: flex;
+gap: 1.5rem;
+}
+​/* PREMIUM GLASS CARDS */
+.hero-cards-container {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2rem;
+margin-top: 2rem;
+}
+​.glass-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(10px);
+-webkit-backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+padding: 2rem;
+border-radius: 16px;
+display: flex;
+align-items: center;
+gap: 1.5rem;
+transition: var(--transition);
+}
+​.glass-card:hover {
+transform: translateY(-5px);
+background: rgba(255, 255, 255, 0.08);
+border-color: rgba(212, 175, 55, 0.3);
+}
+​.glass-card-icon {
+width: 50px;
+height: 50px;
+background: rgba(212, 175, 55, 0.15);
+border-radius: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+​.glass-card-icon svg {
+width: 24px;
+height: 24px;
+fill: var(--gold);
+}
+​.glass-card h3 {
+font-size: 1.15rem;
+font-weight: 600;
+}
+​/* SCROLL DOWN INDICATOR */
+.scroll-down {
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 3;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 8px;
+color: rgba(255, 255, 255, 0.6);
+text-decoration: none;
+font-size: 0.8rem;
+letter-spacing: 2px;
+}
+​.scroll-down .mouse {
+width: 24px;
+height: 40px;
+border: 2px solid rgba(255, 255, 255, 0.6);
+border-radius: 12px;
+position: relative;
+}
+​.scroll-down .wheel {
+width: 4px;
+height: 8px;
+background-color: var(--gold);
+border-radius: 2px;
+position: absolute;
+top: 8px;
+left: 50%;
+transform: translateX(-50%);
+animation: scrollWheel 1.6s infinite;
+}
+​@keyframes scrollWheel {
+0% { top: 8px; opacity: 1; }
+100% { top: 22px; opacity: 0; }
+}
+​/* WHY CHOOSE DR. ASEEL SECTION */
+.section-padding {
+padding: 8rem 0;
+}
+​.why-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 2rem;
+}
+​.why-card {
+background: var(--white);
+padding: 3rem 2rem;
+border-radius: 20px;
+box-shadow: var(--shadow-premium);
+text-align: center;
+transition: var(--transition);
+border: 1px solid transparent;
+}
+​.why-card:hover {
+transform: translateY(-10px);
+border-color: rgba(212, 175, 55, 0.3);
+box-shadow: 0 30px 60px rgba(13, 44, 42, 0.08);
+}
+​.why-icon {
+width: 80px;
+height: 80px;
+background: var(--beige);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+margin: 0 auto 2rem auto;
+transition: var(--transition);
+}
+​.why-card:hover .why-icon {
+background: var(--primary);
+}
+​.why-card:hover .why-icon svg {
+color: var(--gold);
+fill: var(--gold);
+}
+​.why-icon svg {
+width: 35px;
+height: 35px;
+color: var(--emerald);
+fill: var(--emerald);
+transition: var(--transition);
+}
+​.why-card h3 {
+font-size: 1.25rem;
+margin-bottom: 1rem;
+color: var(--primary);
+}
+​.why-card p {
+color: var(--gray-text);
+font-size: 0.95rem;
+}
+​/* ABOUT SECTION */
+#about {
+background-color: var(--white);
+position: relative;
+overflow: hidden;
+}
+​.about-wrapper {
+display: grid;
+grid-template-columns: 1.1fr 0.9fr;
+gap: 5rem;
+align-items: center;
+}
+​.about-image-side {
+position: relative;
+}
+​.about-shape-1 {
+position: absolute;
+top: -30px;
+left: -30px;
+width: 100%;
+height: 100%;
+border: 3px solid var(--gold);
+border-radius: 24px;
+z-index: 1;
+}
+​html[dir="ltr"] .about-shape-1 {
+left: auto;
+right: -30px;
+}
+​.about-image-container {
+position: relative;
+z-index: 2;
+border-radius: 24px;
+overflow: hidden;
+box-shadow: var(--shadow-premium);
+}
+​.about-image-container img {
+width: 100%;
+display: block;
+object-fit: cover;
+}
+​.about-text-side h2 {
+font-size: 2.5rem;
+margin-bottom: 0.5rem;
+}
+​.about-subtitle {
+color: var(--emerald);
+font-weight: 600;
+font-size: 1.1rem;
+margin-bottom: 1.5rem;
+}
+​.about-divider {
+width: 80px;
+height: 3px;
+background: var(--gold);
+margin-bottom: 2.5rem;
+}
+​.about-card {
+background: var(--beige);
+padding: 2.5rem;
+border-radius: 20px;
+border-inline-start: 5px solid var(--primary);
+box-shadow: var(--shadow-premium);
+}
+​.about-card p {
+color: var(--gray-text);
+font-size: 1.05rem;
+margin-bottom: 1.5rem;
+}
+​.about-card p:last-child {
+margin-bottom: 0;
+}
+​/* DOCTOR QUOTE SECTION */
+#quote-section {
+background: linear-gradient(135deg, var(--primary), var(--primary-light));
+color: var(--white);
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+​.quote-container {
+max-width: 900px;
+margin: 0 auto;
+position: relative;
+z-index: 2;
+}
+​.quote-icon {
+font-size: 5rem;
+color: var(--gold);
+line-height: 1;
+margin-bottom: 1.5rem;
+font-family: var(--font-en);
+opacity: 0.3;
+}
+​.quote-text {
+font-size: 1.8rem;
+font-style: italic;
+line-height: 1.6;
+margin-bottom: 2rem;
+font-weight: 500;
+}
+​.quote-author {
+font-size: 1.1rem;
+color: var(--gold);
+letter-spacing: 1px;
+text-transform: uppercase;
+}
+​/* SERVICES SECTION */
+.services-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 2.5rem;
+}
+​.service-card {
+background: var(--white);
+border-radius: 24px;
+padding: 3.5rem 2.5rem;
+box-shadow: var(--shadow-premium);
+transition: var(--transition);
+border: 2px solid transparent;
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+}
+​.service-card:hover {
+transform: translateY(-10px);
+border-color: var(--gold);
+box-shadow: 0 30px 60px rgba(13, 44, 42, 0.1);
+}
+​.service-icon-box {
+width: 70px;
+height: 70px;
+background: rgba(42, 111, 103, 0.08);
+border-radius: 18px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-bottom: 2rem;
+transition: var(--transition);
+}
+​.service-card:hover .service-icon-box {
+background: var(--primary);
+transform: scale(1.05) rotate(5deg);
+}
+​.service-card:hover .service-icon-box svg {
+fill: var(--gold);
+color: var(--gold);
+}
+​.service-icon-box svg {
+width: 32px;
+height: 32px;
+fill: var(--emerald);
+color: var(--emerald);
+transition: var(--transition);
+}
+​.service-card h3 {
+font-size: 1.4rem;
+margin-bottom: 1rem;
+color: var(--primary);
+}
+​.service-card p {
+color: var(--gray-text);
+font-size: 0.98rem;
+margin-bottom: 2rem;
+}
+​/* TREATMENT JOURNEY TIMELINE */
+#journey {
+background-color: var(--white);
+}
+​.timeline {
+position: relative;
+max-width: 1000px;
+margin: 0 auto;
+padding: 2rem 0;
+}
+​.timeline::after {
+content: '';
+position: absolute;
+width: 4px;
+background: linear-gradient(to bottom, var(--primary), var(--gold), var(--emerald));
+top: 0;
+bottom: 0;
+left: 50%;
+margin-left: -2px;
+border-radius: 2px;
+}
+​html[dir="rtl"] .timeline::after {
+left: auto;
+right: 50%;
+margin-right: -2px;
+}
+​.timeline-container {
+padding: 10px 40px;
+position: relative;
+background-color: inherit;
+width: 50%;
+}
+​.timeline-container::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+right: -10px;
+background-color: var(--white);
+border: 4px solid var(--gold);
+top: 30px;
+border-radius: 50%;
+z-index: 1;
+transition: var(--transition);
+}
+​html[dir="rtl"] .timeline-container::after {
+right: auto;
+left: -10px;
+}
+​.left-timeline {
+left: 0;
+}
+​html[dir="rtl"] .left-timeline {
+left: auto;
+right: 0;
+}
+​.right-timeline {
+left: 50%;
+}
+​html[dir="rtl"] .right-timeline {
+left: auto;
+right: 50%;
+}
+​html[dir="ltr"] .left-timeline { left: 0; }
+html[dir="ltr"] .right-timeline { left: 50%; }
+html[dir="ltr"] .timeline-container.left-timeline::after { right: -10px; left: auto; }
+html[dir="ltr"] .timeline-container.right-timeline::after { left: -10px; right: auto; }
+​.timeline-content {
+padding: 2.5rem;
+background: var(--beige);
+position: relative;
+border-radius: 20px;
+box-shadow: var(--shadow-premium);
+transition: var(--transition);
+}
+​.timeline-container:hover::after {
+background-color: var(--primary);
+transform: scale(1.3);
+}
+​.timeline-step-num {
+font-size: 0.85rem;
+font-weight: 700;
+color: var(--gold);
+text-transform: uppercase;
+margin-bottom: 0.5rem;
+display: block;
+letter-spacing: 1px;
+}
+​.timeline-content h3 {
+font-size: 1.3rem;
+margin-bottom: 0.8rem;
+color: var(--primary);
+}
+​.timeline-content p {
+color: var(--gray-text);
+font-size: 0.95rem;
+}
+​/* FAQ ACCORDION */
+.faq-wrapper {
+max-width: 800px;
+margin: 0 auto;
+}
+​.faq-item {
+background: var(--white);
+border-radius: 16px;
+margin-bottom: 1.5rem;
+box-shadow: var(--shadow-premium);
+overflow: hidden;
+border: 1px solid rgba(13, 44, 42, 0.03);
+transition: var(--transition);
+}
+​.faq-trigger {
+width: 100%;
+padding: 1.8rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+background: none;
+border: none;
+text-align: inherit;
+font-size: 1.15rem;
+font-weight: 600;
+color: var(--primary);
+cursor: pointer;
+transition: var(--transition);
+}
+​.faq-icon-box {
+width: 30px;
+height: 30px;
+border-radius: 50%;
+background: var(--beige);
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+transition: var(--transition);
+}
+​.faq-icon-box svg {
+width: 14px;
+height: 14px;
+fill: var(--primary);
+transition: var(--transition);
+}
+​.faq-content {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+background: var(--white);
+}
+​.faq-content-inner {
+padding: 0 2rem 1.8rem 2rem;
+color: var(--gray-text);
+font-size: 1rem;
+line-height: 1.7;
+}
+​/* Active FAQ State */
+.faq-item.active {
+border-color: rgba(212, 175, 55, 0.3);
+}
+​.faq-item.active .faq-trigger {
+color: var(--emerald);
+}
+​.faq-item.active .faq-icon-box {
+background: var(--primary);
+transform: rotate(180deg);
+}
+​.faq-item.active .faq-icon-box svg {
+fill: var(--gold);
+}
+​/* LOCATION & GOOGLE MAPS SECTION */
+#location {
+background-color: var(--white);
+}
+​.location-grid {
+display: grid;
+grid-template-columns: 1.1fr 0.9fr;
+gap: 4rem;
+align-items: center;
+}
+​.map-wrapper {
+position: relative;
+border-radius: 24px;
+overflow: hidden;
+box-shadow: var(--shadow-premium);
+height: 450px;
+border: 1px solid var(--light-gray);
+}
+​.map-wrapper iframe {
+width: 100%;
+height: 100%;
+border: none;
+}
+​.location-card {
+background: var(--beige);
+padding: 3.5rem 3rem;
+border-radius: 24px;
+box-shadow: var(--shadow-premium);
+}
+​.location-card h3 {
+font-size: 1.8rem;
+margin-bottom: 1.5rem;
+color: var(--primary);
+}
+​.info-row {
+display: flex;
+align-items: flex-start;
+gap: 1.2rem;
+margin-bottom: 2rem;
+}
+​.info-icon {
+width: 45px;
+height: 45px;
+background: rgba(42, 111, 103, 0.1);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+}
+​.info-icon svg {
+width: 20px;
+height: 20px;
+fill: var(--emerald);
+}
+​.info-text h4 {
+font-size: 1.05rem;
+margin-bottom: 0.3rem;
+color: var(--primary);
+}
+​.info-text p {
+color: var(--gray-text);
+font-size: 0.95rem;
+}
+​.location-actions {
+display: flex;
+gap: 1rem;
+margin-top: 2.5rem;
+}
+​.btn-whatsapp {
+background-color: #25D366;
+color: var(--white);
+box-shadow: 0 10px 20px rgba(37, 211, 102, 0.15);
+}
+​.btn-whatsapp:hover {
+background-color: #20ba59;
+color: var(--white);
+transform: translateY(-3px);
+}
+​/* PREMIUM CTA SECTION */
+.cta-box {
+background: linear-gradient(135deg, var(--primary), var(--primary-light));
+border-radius: 32px;
+padding: 6rem 4rem;
+text-align: center;
+position: relative;
+overflow: hidden;
+box-shadow: 0 30px 60px rgba(13, 44, 42, 0.15);
+}
+​.cta-box h2 {
+font-size: 3rem;
+color: var(--white);
+margin-bottom: 1.5rem;
+font-weight: 700;
+}
+​.cta-box p {
+color: rgba(255, 255, 255, 0.8);
+font-size: 1.2rem;
+max-width: 600px;
+margin: 0 auto 3rem auto;
+}
+​/* LUXURY FOOTER */
+footer {
+background-color: #061918;
+color: rgba(255, 255, 255, 0.7);
+padding: 5rem 0 2rem 0;
+font-size: 0.95rem;
+}
+​.footer-grid {
+display: grid;
+grid-template-columns: 1.5fr 1fr 1.5fr;
+gap: 4rem;
+margin-bottom: 4rem;
+}
+​.footer-brand h3 {
+font-size: 1.5rem;
+color: var(--white);
+margin-bottom: 1rem;
+background: linear-gradient(135deg, var(--white), var(--gold-light));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+​.footer-brand p {
+line-height: 1.7;
+}
+​.footer-links h4, .footer-contact h4 {
+color: var(--gold);
+font-size: 1.1rem;
+margin-bottom: 1.5rem;
+font-weight: 600;
+text-transform: uppercase;
+letter-spacing: 1px;
+}
+​.footer-links ul {
+list-style: none;
+}
+​.footer-links ul li {
+margin-bottom: 0.8rem;
+}
+​.footer-links ul li a {
+color: rgba(255, 255, 255, 0.7);
+text-decoration: none;
+transition: var(--transition);
+}
+​.footer-links ul li a:hover {
+color: var(--gold);
+padding-inline-start: 5px;
+}
+​.footer-contact p {
+margin-bottom: 1rem;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+​.footer-divider {
+height: 1px;
+background: rgba(255, 255, 255, 0.08);
+margin-bottom: 2rem;
+}
+​.footer-bottom {
+display: flex;
+justify-content: space-between;
+align-items: center;
+flex-wrap: wrap;
+gap: 1.5rem;
+}
+​.medical-disclaimer {
+font-size: 0.8rem;
+color: rgba(255, 255, 255, 0.4);
+max-width: 100%;
+line-height: 1.5;
+text-align: justify;
+}
+​/* RESPONSIVE BREAKPOINTS */
+@media (max-width: 1200px) {
+.why-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+.services-grid {
+grid-template-columns: repeat(2, 1fr);
+}
+}
+​@media (max-width: 992px) {
+.nav-menu {
+position: fixed;
+top: 90px;
+left: -100%;
+width: 100%;
+height: calc(100vh - 90px);
+background: var(--primary);
+flex-direction: column;
+padding: 4rem 2rem;
+gap: 2rem;
+transition: var(--transition);
+z-index: 999;
+}
+​html[dir="rtl"] .nav-menu {
+left: auto;
+right: -100%;
+}
+​.nav-menu.active {
+left: 0;
+}
+​html[dir="rtl"] .nav-menu.active {
+right: 0;
+}
+​.menu-toggle {
+display: flex;
+}
+​/* Hamburger animation */
+.menu-toggle.active span:nth-child(1) {
+transform: translateY(8px) rotate(45deg);
+}
+.menu-toggle.active span:nth-child(2) {
+opacity: 0;
+}
+.menu-toggle.active span:nth-child(3) {
+transform: translateY(-8px) rotate(-45deg);
+}
+​.hero-content h1 {
+font-size: 2.5rem;
+}
+​.hero-cards-container {
+grid-template-columns: 1fr;
+gap: 1rem;
+}
+​#hero {
+height: auto;
+padding: 120px 0 60px 0;
+}
+​.about-wrapper, .location-grid, .footer-grid {
+grid-template-columns: 1fr;
+gap: 3rem;
+}
+​.timeline::after {
+left: 31px;
+}
+html[dir="rtl"] .timeline::after {
+right: 31px;
+left: auto;
+}
+​.timeline-container {
+width: 100%;
+padding-left: 70px;
+padding-right: 20px;
+}
+​html[dir="rtl"] .timeline-container {
+padding-right: 70px;
+padding-left: 20px;
+}
+​.timeline-container::after {
+left: 20px;
+}
+​html[dir="rtl"] .timeline-container::after {
+right: 20px;
+left: auto;
+}
+​.right-timeline {
+left: 0;
+}
+​html[dir="rtl"] .right-timeline {
+right: 0;
+}
+​html[dir="ltr"] .timeline-container { padding-left: 70px; padding-right: 20px; }
+html[dir="ltr"] .timeline-container::after { left: 20px; right: auto; }
+}
+​@media (max-width: 768px) {
+.why-grid, .services-grid {
+grid-template-columns: 1fr;
+}
+​.cta-box {
+padding: 4rem 2rem;
+}
+​.cta-box h2 {
+font-size: 2rem;
+}
+​.hero-actions {
+flex-direction: column;
+}
+}
 </style>
 </head>
 <body>
-
-<!-- ================= NAV ================= -->
-<header class="nav">
-  <div class="nav-inner">
-    <div class="brand">
-      <span class="brand-mark">A</span>
-      <span>
-        Dr. Aseel Hisham
-        <small data-i18n="nav.tag">Nutrition &amp; Obesity Management</small>
-      </span>
-    </div>
-    <nav class="links">
-      <a href="#about" data-i18n="nav.about">About</a>
-      <a href="#services" data-i18n="nav.services">Services</a>
-      <a href="#gallery" data-i18n="nav.gallery">Gallery</a>
-      <a href="#faq" data-i18n="nav.faq">FAQ</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
-    </nav>
-    <div class="nav-actions">
-      <button class="lang-toggle" id="langToggle">EN</button>
-      <a class="btn-cta" href="https://wa.me/201092910870" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 1 1 6.99 3.86zm4.5-6.13c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.96-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.77-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31s-.87.85-.87 2.08.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.17-.47-.29z"/></svg>
-        <span data-i18n="nav.book">Book on WhatsApp</span>
-      </a>
-      <button class="burger" id="burger"><span></span><span></span><span></span></button>
-    </div>
-  </div>
-</header>
-
-<!-- ================= HERO ================= -->
-<section class="hero">
-  <div class="hero-slides" id="heroSlides"></div>
-  <div class="hero-content">
-    <span class="eyebrow" data-i18n="hero.eyebrow">Clinical Nutrition &amp; Weight Care</span>
-    <h1>
-      <span data-i18n="hero.title">A calmer, evidence-based path to a healthier weight</span>
-      <span class="signature">Dr. Aseel Hisham</span>
-    </h1>
-    <p class="sub" data-i18n="hero.sub">Personalized diet programs, medically supervised Mounjaro / GLP-1 plans, and honest, practical nutrition guidance — built around your body, not a template.</p>
-    <div class="hero-actions">
-      <a class="btn-cta" href="https://wa.me/201092910870" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 1 1 6.99 3.86z"/></svg>
-        <span data-i18n="hero.cta1">Book a Consultation</span>
-      </a>
-      <a class="btn-outline" href="#services" data-i18n="hero.cta2">Explore Services</a>
-    </div>
-    <div class="stat-strip">
-      <div class="stat"><b>+7</b><span data-i18n="hero.stat1">Years of clinical practice</span></div>
-      <div class="stat"><b>+1200</b><span data-i18n="hero.stat2">Patients guided</span></div>
-      <div class="stat"><b>92%</b><span data-i18n="hero.stat3">Report sustained results</span></div>
-    </div>
-  </div>
-  <div class="hero-dots" id="heroDots"></div>
-</section>
-
-<!-- ================= ABOUT ================= -->
-<section class="section" id="about">
-  <div class="wrap about">
-    <div class="about-photo reveal">
-      <div class="frame">
-        <img src="https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w800" alt="Dr. Aseel Hisham" loading="lazy">
-      </div>
-      <div class="tab">
-        <b>MSc.</b>
-        <span data-i18n="about.tabline">Clinical Nutrition</span>
-      </div>
-    </div>
-    <div class="about-text reveal">
-      <span class="tag" data-i18n="about.tag">About the Doctor</span>
-      <h3 data-i18n="about.title">Care that treats the person, not just the weight on the scale</h3>
-      <p data-i18n="about.p1">Dr. Aseel Hisham specializes in clinical nutrition and obesity management, combining structured diet programs with medically supervised weight-loss therapy for patients who need more than generic advice.</p>
-      <p data-i18n="about.p2">Every plan starts with a full assessment — medical history, lifestyle, and goals — before any recommendation is made, whether that's a nutrition plan alone or a plan paired with GLP-1 therapy such as Mounjaro.</p>
-      <ul class="cred-list">
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg><span data-i18n="about.cred1">Specialist in Nutrition &amp; Obesity Management</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg><span data-i18n="about.cred2">Certified in GLP-1 / Mounjaro weight-management protocols</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 12l2 2 4-4M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/></svg><span data-i18n="about.cred3">Hundreds of personalized diet plans delivered</span></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= SERVICES ================= -->
-<section class="section tight" id="services" style="background:var(--teal-soft);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag" data-i18n="services.tag">What I Offer</span>
-      <h2 data-i18n="services.title">Three ways we can work together</h2>
-      <p data-i18n="services.sub">Every patient is different — some need a structured diet, some need medical support, and most benefit from both alongside honest daily habits.</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v9l6 3"/></svg></div>
-        <h4 data-i18n="services.c1.title">Personalized Diet Plans</h4>
-        <p data-i18n="services.c1.desc">Nutrition programs built around your labs, routine, and food culture — not a copy-pasted meal plan.</p>
-        <span class="pill" data-i18n="services.c1.pill">Nutrition</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M19 8l-7-5-7 5v8l7 5 7-5V8z"/><path d="M12 12v6M9 9l3 3 3-3"/></svg></div>
-        <h4 data-i18n="services.c2.title">Mounjaro / GLP-1 Management</h4>
-        <p data-i18n="services.c2.desc">Medically supervised dosing, side-effect monitoring, and nutrition support alongside your GLP-1 therapy.</p>
-        <span class="pill" data-i18n="services.c2.pill">Medical Weight Care</span>
-      </div>
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18h6M10 22h4M12 2a6 6 0 0 0-4 10.5c.6.6 1 1.4 1 2.5h6c0-1.1.4-1.9 1-2.5A6 6 0 0 0 12 2z"/></svg></div>
-        <h4 data-i18n="services.c3.title">General Nutrition Guidance</h4>
-        <p data-i18n="services.c3.desc">Practical, sustainable advice on eating habits, movement, and lifestyle — for long-term maintenance, not quick fixes.</p>
-        <span class="pill" data-i18n="services.c3.pill">Lifestyle</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= GALLERY ================= -->
-<section class="section" id="gallery">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag" data-i18n="gallery.tag">Gallery</span>
-      <h2 data-i18n="gallery.title">Inside the practice</h2>
-    </div>
-    <div class="gallery-grid reveal">
-      <a class="g1" href="https://lh3.googleusercontent.com/d/1D4xJixUdRgeGXjDlYXQvxpxLIH_ALkMU=w1000" target="_blank" rel="noopener">
-        <img src="https://lh3.googleusercontent.com/d/1D4xJixUdRgeGXjDlYXQvxpxLIH_ALkMU=w700" alt="Clinic gallery photo 1" loading="lazy">
-      </a>
-      <a href="https://lh3.googleusercontent.com/d/1EfB0Ba2jdEcN2cv2V1px0V5_k9NatUoE=w1000" target="_blank" rel="noopener">
-        <img src="https://lh3.googleusercontent.com/d/1EfB0Ba2jdEcN2cv2V1px0V5_k9NatUoE=w500" alt="Clinic gallery photo 2" loading="lazy">
-      </a>
-      <a href="https://lh3.googleusercontent.com/d/1boAm2EG87Pyra--xY3aGON7biUH19P4J=w1000" target="_blank" rel="noopener">
-        <img src="https://lh3.googleusercontent.com/d/1boAm2EG87Pyra--xY3aGON7biUH19P4J=w500" alt="Clinic gallery photo 3" loading="lazy">
-      </a>
-      <a class="g4" href="https://lh3.googleusercontent.com/d/1D5W9tv85EPfIitgUB4PWoWzAuj_yNhz_=w1000" target="_blank" rel="noopener">
-        <img src="https://lh3.googleusercontent.com/d/1D5W9tv85EPfIitgUB4PWoWzAuj_yNhz_=w700" alt="Clinic gallery photo 4" loading="lazy">
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FAQ ================= -->
-<section class="section tight" id="faq" style="background:var(--teal-soft);">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="tag" data-i18n="faq.tag">Good to Know</span>
-      <h2 data-i18n="faq.title">Frequently asked questions</h2>
-    </div>
-    <div class="faq-list reveal" id="faqList">
-      <div class="faq-item">
-        <button class="faq-q"><span data-i18n="faq.q1">What is Mounjaro and who is it suitable for?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-a"><p data-i18n="faq.a1">Mounjaro (tirzepatide) is a GLP-1/GIP medication used for weight management under medical supervision. Suitability is assessed individually based on your health history, BMI, and goals during consultation.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span data-i18n="faq.q2">Do I need a diet plan while on Mounjaro?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-a"><p data-i18n="faq.a2">Yes. Medication supports appetite control, but a structured nutrition plan protects muscle mass, prevents nutrient gaps, and helps maintain results long after treatment.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span data-i18n="faq.q3">How long until I see results?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-a"><p data-i18n="faq.a3">Most patients notice initial changes within 3–4 weeks, with meaningful progress over 3 months. Timelines vary by starting point and treatment plan.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q"><span data-i18n="faq.q4">How do I book a first appointment?</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-        <div class="faq-a"><p data-i18n="faq.a4">Message the clinic directly on WhatsApp using the button on this page, and you'll receive available times and next steps.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= CONTACT / CTA ================= -->
-<section class="section" id="contact">
-  <div class="wrap">
-    <div class="cta-band reveal">
-      <div>
-        <h3 data-i18n="cta.title">Ready to start your plan?</h3>
-        <p data-i18n="cta.sub">Send a message on WhatsApp and Dr. Aseel's clinic will get back to you with available appointment times.</p>
-      </div>
-      <a class="btn-cta" href="https://wa.me/201092910870" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2z"/></svg>
-        <span data-i18n="cta.button">Message on WhatsApp</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FOOTER ================= -->
-<footer>
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-brand">
-          <span class="brand-mark">A</span>
-          <span style="color:#fff; font-weight:700;">Dr. Aseel Hisham</span>
-        </div>
-        <p class="disclaimer" data-i18n="footer.disclaimer">This website provides general information only and does not replace an in-person medical consultation. All treatment decisions, including GLP-1 / Mounjaro therapy, are made after direct assessment by the doctor.</p>
-      </div>
-      <div>
-        <h5 data-i18n="footer.explore">Explore</h5>
-        <ul>
-          <li><a href="#about" data-i18n="nav.about">About</a></li>
-          <li><a href="#services" data-i18n="nav.services">Services</a></li>
-          <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
-          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5 data-i18n="footer.contact">Contact</h5>
-        <ul>
-          <li><a href="https://wa.me/201092910870" target="_blank" rel="noopener">WhatsApp: 010 9291 0870</a></li>
-          <li data-i18n="footer.location">Cairo, Egypt</li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span data-i18n="footer.rights">© 2026 Dr. Aseel Hisham. All rights reserved.</span>
-      <span data-i18n="footer.made">Nutrition &amp; Obesity Management Clinic</span>
-    </div>
-  </div>
-</footer>
-
-<a class="wa-float" href="https://wa.me/201092910870" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.22 8.22 0 1 1 6.99 3.86zm4.5-6.13c-.25-.12-1.47-.72-1.7-.8-.23-.08-.39-.12-.56.12-.17.25-.64.8-.78.96-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.45-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.77-1.84-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31s-.87.85-.87 2.08.89 2.41 1.02 2.58c.12.17 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.22-.17-.47-.29z"/></svg>
+​<div id="scroll-progress" aria-hidden="true"></div>
+​<header id="navbar">
+<div class="nav-container">
+<a href="#" class="logo" aria-label="Dr. Aseel Hisham Logo">
+<span class="brand-name">د. أسيل هشام</span>
+<span class="brand-sub">Clinical Nutrition</span>
 </a>
-
-<script>
-/* ============ TRANSLATIONS ============ */
-const translations = {
-  ar: {
-    "nav.tag":"تغذية علاجية وإدارة السمنة",
-    "nav.about":"من نحن","nav.services":"الخدمات","nav.gallery":"الجاليري","nav.faq":"الأسئلة الشائعة","nav.contact":"تواصل معنا","nav.book":"احجزي على واتساب",
-    "hero.eyebrow":"تغذية علاجية ورعاية الوزن",
-    "hero.title":"طريق أهدأ ومبني على العلم نحو وزن صحي",
-    "hero.sub":"خطط غذائية شخصية، متابعة طبية لعلاج Mounjaro / GLP-1، ونصايح تغذية عملية وصادقة — مبنية على جسمك أنت مش على قالب جاهز.",
-    "hero.cta1":"احجزي استشارة","hero.cta2":"تعرفي على الخدمات",
-    "hero.stat1":"سنوات خبرة عملية","hero.stat2":"حالة تمت متابعتها","hero.stat3":"نسبة استمرار النتائج",
-    "about.tag":"عن الدكتورة","about.tabline":"تغذية علاجية",
-    "about.title":"رعاية بتعامل الإنسان مش بس الرقم على الميزان",
-    "about.p1":"الدكتورة أسيل هشام متخصصة في التغذية العلاجية وإدارة السمنة، بتجمع بين برامج غذائية منظمة ومتابعة طبية لعلاج إنقاص الوزن للمرضى اللي محتاجين أكتر من نصيحة عامة.",
-    "about.p2":"كل خطة بتبدأ بتقييم كامل — التاريخ الطبي، نمط الحياة، والهدف — قبل ما توصف أي حاجة، سواء خطة غذائية لوحدها أو مع علاج GLP-1 زي Mounjaro.",
-    "about.cred1":"أخصائية تغذية وإدارة سمنة",
-    "about.cred2":"معتمدة في بروتوكولات Mounjaro / GLP-1",
-    "about.cred3":"مئات الخطط الغذائية الشخصية المُنفذة",
-    "services.tag":"إيه اللي بنقدمه",
-    "services.title":"ثلاث طرق نقدر نشتغل بيها مع بعض",
-    "services.sub":"كل مريض مختلف عن التاني — في ناس محتاجة نظام غذائي منظم، في ناس محتاجة دعم طبي، والأغلب بيستفيد من الاتنين مع عادات يومية صادقة.",
-    "services.c1.title":"خطط غذائية شخصية",
-    "services.c1.desc":"برامج تغذية مبنية على تحاليلك، روتينك، وثقافتك الغذائية — مش خطة جاهزة منسوخة.",
-    "services.c1.pill":"تغذية",
-    "services.c2.title":"متابعة Mounjaro / GLP-1",
-    "services.c2.desc":"متابعة طبية للجرعات، رصد الأعراض الجانبية، ودعم غذائي جنب علاج GLP-1.",
-    "services.c2.pill":"رعاية طبية للوزن",
-    "services.c3.title":"نصايح تغذية عامة",
-    "services.c3.desc":"نصايح عملية ومستدامة عن عادات الأكل والحركة ونمط الحياة — للحفاظ على النتيجة على المدى الطويل مش حلول سريعة.",
-    "services.c3.pill":"نمط حياة",
-    "gallery.tag":"الجاليري","gallery.title":"جولة داخل العيادة",
-    "faq.tag":"معلومة مفيدة","faq.title":"أسئلة شائعة",
-    "faq.q1":"إيه هو Mounjaro ومين المناسب ليه؟",
-    "faq.a1":"Mounjaro (tirzepatide) دواء من فئة GLP-1/GIP بيستخدم لإدارة الوزن تحت إشراف طبي. المناسبة بتتحدد بشكل فردي حسب تاريخك الصحي ومؤشر كتلة الجسم والهدف من العلاج أثناء الاستشارة.",
-    "faq.q2":"محتاجة نظام غذائي وأنا على Mounjaro؟",
-    "faq.a2":"أيوه. الدواء بيساعد في التحكم بالشهية، لكن خطة غذائية منظمة بتحافظ على كتلة العضلات، بتمنع نقص العناصر الغذائية، وبتساعد على استمرار النتيجة بعد العلاج.",
-    "faq.q3":"هشوف نتيجة بعد قد إيه؟",
-    "faq.a3":"معظم المريضات بيلاحظوا تغيير أولي خلال 3-4 أسابيع، مع تقدم ملحوظ خلال 3 شهور. المدة بتختلف حسب نقطة البداية وخطة العلاج.",
-    "faq.q4":"احجز أول استشارة إزاي؟",
-    "faq.a4":"ابعتي رسالة للعيادة مباشرة على واتساب من الزرار الموجود في الصفحة، وهيوصلك المواعيد المتاحة والخطوات التالية.",
-    "cta.title":"جاهزة تبدأي خطتك؟",
-    "cta.sub":"ابعتي رسالة على واتساب وفريق عيادة الدكتورة أسيل هيرد عليكِ بالمواعيد المتاحة.",
-    "cta.button":"راسلينا على واتساب",
-    "footer.disclaimer":"هذا الموقع بيقدم معلومات عامة فقط ولا يغني عن استشارة طبية مباشرة. كل قرارات العلاج، بما فيها علاج GLP-1 / Mounjaro، بتتحدد بعد تقييم مباشر من الدكتورة.",
-    "footer.explore":"روابط","footer.contact":"تواصل","footer.location":"القاهرة، مصر",
-    "footer.rights":"© 2026 د. أسيل هشام. جميع الحقوق محفوظة.",
-    "footer.made":"عيادة تغذية علاجية وإدارة السمنة"
-  },
-  en: {
-    "nav.tag":"Nutrition & Obesity Management",
-    "nav.about":"About","nav.services":"Services","nav.gallery":"Gallery","nav.faq":"FAQ","nav.contact":"Contact","nav.book":"Book on WhatsApp",
-    "hero.eyebrow":"Clinical Nutrition & Weight Care",
-    "hero.title":"A calmer, evidence-based path to a healthier weight",
-    "hero.sub":"Personalized diet programs, medically supervised Mounjaro / GLP-1 plans, and honest, practical nutrition guidance — built around your body, not a template.",
-    "hero.cta1":"Book a Consultation","hero.cta2":"Explore Services",
-    "hero.stat1":"Years of clinical practice","hero.stat2":"Patients guided","hero.stat3":"Report sustained results",
-    "about.tag":"About the Doctor","about.tabline":"Clinical Nutrition",
-    "about.title":"Care that treats the person, not just the weight on the scale",
-    "about.p1":"Dr. Aseel Hisham specializes in clinical nutrition and obesity management, combining structured diet programs with medically supervised weight-loss therapy for patients who need more than generic advice.",
-    "about.p2":"Every plan starts with a full assessment — medical history, lifestyle, and goals — before any recommendation is made, whether that's a nutrition plan alone or a plan paired with GLP-1 therapy such as Mounjaro.",
-    "about.cred1":"Specialist in Nutrition & Obesity Management",
-    "about.cred2":"Certified in GLP-1 / Mounjaro weight-management protocols",
-    "about.cred3":"Hundreds of personalized diet plans delivered",
-    "services.tag":"What I Offer",
-    "services.title":"Three ways we can work together",
-    "services.sub":"Every patient is different — some need a structured diet, some need medical support, and most benefit from both alongside honest daily habits.",
-    "services.c1.title":"Personalized Diet Plans",
-    "services.c1.desc":"Nutrition programs built around your labs, routine, and food culture — not a copy-pasted meal plan.",
-    "services.c1.pill":"Nutrition",
-    "services.c2.title":"Mounjaro / GLP-1 Management",
-    "services.c2.desc":"Medically supervised dosing, side-effect monitoring, and nutrition support alongside your GLP-1 therapy.",
-    "services.c2.pill":"Medical Weight Care",
-    "services.c3.title":"General Nutrition Guidance",
-    "services.c3.desc":"Practical, sustainable advice on eating habits, movement, and lifestyle — for long-term maintenance, not quick fixes.",
-    "services.c3.pill":"Lifestyle",
-    "gallery.tag":"Gallery","gallery.title":"Inside the practice",
-    "faq.tag":"Good to Know","faq.title":"Frequently asked questions",
-    "faq.q1":"What is Mounjaro and who is it suitable for?",
-    "faq.a1":"Mounjaro (tirzepatide) is a GLP-1/GIP medication used for weight management under medical supervision. Suitability is assessed individually based on your health history, BMI, and goals during consultation.",
-    "faq.q2":"Do I need a diet plan while on Mounjaro?",
-    "faq.a2":"Yes. Medication supports appetite control, but a structured nutrition plan protects muscle mass, prevents nutrient gaps, and helps maintain results long after treatment.",
-    "faq.q3":"How long until I see results?",
-    "faq.a3":"Most patients notice initial changes within 3–4 weeks, with meaningful progress over 3 months. Timelines vary by starting point and treatment plan.",
-    "faq.q4":"How do I book a first appointment?",
-    "faq.a4":"Message the clinic directly on WhatsApp using the button on this page, and you'll receive available times and next steps.",
-    "cta.title":"Ready to start your plan?",
-    "cta.sub":"Send a message on WhatsApp and Dr. Aseel's clinic will get back to you with available appointment times.",
-    "cta.button":"Message on WhatsApp",
-    "footer.disclaimer":"This website provides general information only and does not replace an in-person medical consultation. All treatment decisions, including GLP-1 / Mounjaro therapy, are made after direct assessment by the doctor.",
-    "footer.explore":"Explore","footer.contact":"Contact","footer.location":"Cairo, Egypt",
-    "footer.rights":"© 2026 Dr. Aseel Hisham. All rights reserved.",
-    "footer.made":"Nutrition & Obesity Management Clinic"
-  }
+​<nav role="navigation" aria-label="Main Navigation">
+<ul class="nav-menu" id="nav-menu">
+<li><a href="#hero" class="nav-link"><span class="ar-only">الرئيسية</span><span class="en-only">Home</span></a></li>
+<li><a href="#why-choose" class="nav-link"><span class="ar-only">لماذا نحن</span><span class="en-only">Why Choose Us</span></a></li>
+<li><a href="#about" class="nav-link"><span class="ar-only">من أنا</span><span class="en-only">About Me</span></a></li>
+<li><a href="#services" class="nav-link"><span class="ar-only">خدماتنا</span><span class="en-only">Services</span></a></li>
+<li><a href="#journey" class="nav-link"><span class="ar-only">رحلة العلاج</span><span class="en-only">Journey</span></a></li>
+<li><a href="#faq" class="nav-link"><span class="ar-only">الأسئلة الشائعة</span><span class="en-only">FAQ</span></a></li>
+<li><a href="#location" class="nav-link"><span class="ar-only">موقعنا</span><span class="en-only">Location</span></a></li>
+<li><button class="lang-toggle" id="lang-btn" aria-label="Toggle Language">EN</button></li>
+</ul>
+</nav>
+​<button class="menu-toggle" id="menu-toggle" aria-label="Toggle Mobile Menu" aria-expanded="false">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</div>
+</header>
+​<section id="hero" aria-label="Welcome Section">
+<div class="hero-slider">
+<div class="slide active" style="background-image: url('[https://lh3.googleusercontent.com/d/1D4xJixUdRgeGXjDlYXQvxpxLIH_ALkMU=w1600](https://lh3.googleusercontent.com/d/1D4xJixUdRgeGXjDlYXQvxpxLIH_ALkMU=w1600)⁠�');"></div>
+<div class="slide" style="background-image: url('[https://lh3.googleusercontent.com/d/1EfB0Ba2jdEcN2cv2V1px0V5_k9NatUoE=w1600](https://lh3.googleusercontent.com/d/1EfB0Ba2jdEcN2cv2V1px0V5_k9NatUoE=w1600)⁠�');"></div>
+<div class="slide" style="background-image: url('[https://lh3.googleusercontent.com/d/1boAm2EG87Pyra--xY3aGON7biUH19P4J=w1600](https://lh3.googleusercontent.com/d/1boAm2EG87Pyra--xY3aGON7biUH19P4J=w1600)⁠�');"></div>
+<div class="slide" style="background-image: url('[https://lh3.googleusercontent.com/d/1D5W9tv85EPfIitgUB4PWoWzAuj_yNhz_=w1600](https://lh3.googleusercontent.com/d/1D5W9tv85EPfIitgUB4PWoWzAuj_yNhz_=w1600)⁠�');"></div>
+</div>
+<div class="hero-overlay"></div>
+​<div class="container hero-content">
+<div class="hero-text-wrapper">
+<h1 class="fade-up-element">
+<span class="ar-only">صحتك تستحق <span>رعاية طبية</span> فاخرة ومبنية على الدليل</span>
+<span class="en-only">Your Health Deserves <span>Premium</span> & Evidence-Based Care</span>
+</h1>
+<p class="fade-up-element">
+<span class="ar-only">عيادة الدكتورة أسيل هشام للتغذية العلاجية وإدارة السمنة نمط حياة جديد يبدأ هنا.</span>
+<span class="en-only">Dr. Aseel Hisham Clinic for Clinical Nutrition & Obesity Management. A new lifestyle begins here.</span>
+</p>
+<div class="hero-actions fade-up-element">
+<a href="[https://wa.me/201092910870](https://wa.me/201092910870)" class="btn btn-primary" target="_blank" rel="noopener">
+<span class="ar-only">احجز استشارتك الآن</span>
+<span class="en-only">Book Appointment Now</span>
+</a>
+<a href="#about" class="btn btn-outline">
+<span class="ar-only">اكتشف المزيد</span>
+<span class="en-only">Explore More</span>
+</a>
+</div>
+</div>
+​<div class="hero-cards-container fade-up-element">
+<div class="glass-card">
+<div class="glass-card-icon">
+<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+</div>
+<div>
+<h3 class="ar-only">خطط تغذية مخصصة</h3>
+<h3 class="en-only">Personalized Nutrition</h3>
+</div>
+</div>
+<div class="glass-card">
+<div class="glass-card-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
+</div>
+<div>
+<h3 class="ar-only">إدارة الوزن طبياً</h3>
+<h3 class="en-only">Medical Weight Management</h3>
+</div>
+</div>
+<div class="glass-card">
+<div class="glass-card-icon">
+<svg viewBox="0 0 24 24"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
+</div>
+<div>
+<h3 class="ar-only">رعاية مبنية على الدليل</h3>
+<h3 class="en-only">Evidence-Based Care</h3>
+</div>
+</div>
+</div>
+</div>
+​<a href="#why-choose" class="scroll-down" aria-label="Scroll Down">
+<span class="ar-only">اكتشف</span>
+<span class="en-only">Discover</span>
+<div class="mouse"><div class="wheel"></div></div>
+</a>
+</section>
+​<section id="why-choose" class="section-padding" aria-labelledby="why-choose-heading">
+<div class="container">
+<div class="section-header fade-up-element">
+<h2 id="why-choose-heading">
+<span class="ar-only">لماذا تختار عيادتنا؟</span>
+<span class="en-only">Why Choose Our Clinic?</span>
+</h2>
+</div>
+​<div class="why-grid">
+<div class="why-card fade-up-element">
+<div class="why-icon">
+<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+</div>
+<h3 class="ar-only">رعاية شخصية</h3>
+<h3 class="en-only">Personalized Care</h3>
+<p class="ar-only">نصمم برامج مخصصة بالكامل لتناسب طبيعة جسمك الفردية ونمط حياتك اليومي بشكل مثالي.</p>
+<p class="en-only">We design completely customized programs to fit your individual body type and lifestyle perfectly.</p>
+</div>
+<div class="why-card fade-up-element">
+<div class="why-icon">
+<svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+</div>
+<h3 class="ar-only">علاج قائم على الأدلة</h3>
+<h3 class="en-only">Evidence-Based Treatment</h3>
+<p class="ar-only">جميع استراتيجياتنا مستندة إلى أحدث الأبحاث العلمية المعتمدة عالمياً لضمان السلامة.</p>
+<p class="en-only">All our strategies are based on the latest globally approved scientific research to ensure safety.</p>
+</div>
+<div class="why-card fade-up-element">
+<div class="why-icon">
+<svg viewBox="0 0 24 24"><path d="M12 22c5.52 0 10-4.48 10-10S17.52 2 12 2 2 6.48 2 12s4.48 10 10 10zm1-15h-2v6h6v-2h-4V7z"/></svg>
+</div>
+<h3 class="ar-only">إدارة الوزن الطبية</h3>
+<h3 class="en-only">Medical Weight Management</h3>
+<p class="ar-only">نهج متكامل تحت إشراف طبي متخصص للتعامل مع السمنة والمشاكل الصحية المصاحبة لها.</p>
+<p class="en-only">An integrated approach under specialized medical supervision to handle obesity and related health conditions.</p>
+</div>
+<div class="why-card fade-up-element">
+<div class="why-icon">
+<svg viewBox="0 0 24 24"><path d="M18 17H6v-2h12v2zm0-4H6v-2h12v2zm0-4H6V7h12v2z"/></svg>
+</div>
+<h3 class="ar-only">متابعة مستمرة ودعم</h3>
+<h3 class="en-only">Continuous Follow-up</h3>
+<p class="ar-only">نحن معك خطوة بخطوة عبر تقديم توجيه مستمر وتعديل دوري للخطط حتى تحقيق الهدف.</p>
+<p class="en-only">We are with you step-by-step, providing continuous guidance and periodic adjustments to ensure success.</p>
+</div>
+</div>
+</div>
+</section>
+​<section id="about" class="section-padding" aria-labelledby="about-heading">
+<div class="container">
+<div class="about-wrapper">
+<div class="about-image-side fade-up-element">
+<div class="about-shape-1"></div>
+<div class="about-image-container">
+<img src="[https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000](https://lh3.googleusercontent.com/d/1CAHZN1SIwj1bUnIdpOX_-tvzrfICUwvr=w1000)⁠�" alt="Dr. Aseel Hisham" loading="lazy">
+</div>
+</div>
+​<div class="about-text-side fade-up-element">
+<h2 id="about-heading">
+<span class="ar-only">د. أسيل هشام</span>
+<span class="en-only">Dr. Aseel Hisham</span>
+</h2>
+<p class="about-subtitle">
+<span class="ar-only">أخصائية التغذية العلاجية وإدارة السمنة</span>
+<span class="en-only">Clinical Nutrition Specialist</span>
+</p>
+<div class="about-divider"></div>
+​<div class="about-card">
+<p class="ar-only">كرست الدكتورة أسيل هشام مسيرتها المهنية لمساعدة الأفراد في تحقيق أهدافهم الصحية من خلال علم التغذية الحديث والمبني على الأدلة العلمية الراسخة.</p>
+<p class="en-only">Dr. Aseel Hisham has dedicated her career to helping individuals achieve their health goals through modern and deeply evidence-based nutrition science.</p>
+​<p class="ar-only">نؤمن في عيادتنا بأن التغيير الحقيقي يبدأ من فهم طبيعة الجسم وتعديل السلوكيات وليس الحرمان المقيد المستمر.</p>
+<p class="en-only">In our clinic, we believe that true change starts with understanding your body and behavior modification rather than rigid, restrictive deprivation.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+​<section id="quote-section" class="section-padding" aria-label="Inspirational Quote">
+<div class="container">
+<div class="quote-container fade-up-element">
+<div class="quote-icon">“</div>
+<blockquote class="quote-text">
+<span class="ar-only">"هدفي هو مساعدة كل مريض على الوصول إلى وزن صحي يمكنه الحفاظ عليه مدى الحياة — وليس مجرد تحقيق رقم مؤقت على الميزان."</span>
+<span class="en-only">"My goal is to help every patient reach a healthy weight they can maintain—not just achieve a number on the scale."</span>
+</blockquote>
+<div class="quote-author">
+<span class="ar-only">د. أسيل هشام</span>
+<span class="en-only">Dr. Aseel Hisham</span>
+</div>
+</div>
+</div>
+</section>
+​<section id="services" class="section-padding" aria-labelledby="services-heading">
+<div class="container">
+<div class="section-header fade-up-element">
+<h2 id="services-heading">
+<span class="ar-only">خدماتنا المتميزة</span>
+<span class="en-only">Our Premium Services</span>
+</h2>
+</div>
+​<div class="services-grid">
+<div class="service-card fade-up-element">
+<div class="service-icon-box">
+<svg viewBox="0 0 24 24"><path d="M6 2v6h.01L6 8.01 10 12l-4 4 .01.01H6V22h12v-5.99h-.01L18 16l-4-4 4-3.99-.01-.01H18V2H6zm10 14.5V20H8v-3.5l4-4 4 4zM12 11.5l-4-4V4h8v3.5l-4 4z"/></svg>
+</div>
+<h3 class="ar-only">برامج إنقاص الوزن</h3>
+<h3 class="en-only">Weight Loss Programs</h3>
+<p class="ar-only">أنظمة مدروسة طبياً صممت خصيصاً لمساعدتك على التخلص من الدهون الزائدة بأمان واستدامة.</p>
+<p class="en-only">Medically backed systems designed customized to eliminate excess fat safely and sustainably.</p>
+</div>
+​<div class="service-card fade-up-element">
+<div class="service-icon-box">
+<svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm5 11h-4v4h-2v-4H7v-2h4V7h2v4h4v2z"/></svg>
+</div>
+<h3 class="ar-only">التغذية العلاجية</h3>
+<h3 class="en-only">Clinical Nutrition</h3>
+<p class="ar-only">إدارة وتصميم خطط غذائية متكاملة لمرضى السكري، الضغط، والمشاكل الصحية المزمنة.</p>
+<p class="en-only">Managing and designing full dietary frameworks for diabetes, hypertension, and chronic health issues.</p>
+</div>
+​<div class="service-card fade-up-element">
+<div class="service-icon-box">
+<svg viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9 0 2.12.74 4.07 1.97 5.61L4.35 19.4c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0l1.9-1.9C9.22 19.58 10.57 20 12 20c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 15c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6z"/></svg>
+</div>
+<h3 class="ar-only">تعديل سلوكيات نمط الحياة</h3>
+<h3 class="en-only">Lifestyle Modification</h3>
+<p class="ar-only">جلسات تفاعلية تهدف إلى بناء عادات صحية إيجابية دائمة تضمن الحفاظ على النتائج المكتسبة.</p>
+<p class="en-only">Interactive sessions aiming to build permanent positive habits ensuring your outcomes stay locked in.</p>
+</div>
+</div>
+</div>
+</section>
+​<section id="journey" class="section-padding" aria-labelledby="journey-heading">
+<div class="container">
+<div class="section-header fade-up-element">
+<h2 id="journey-heading">
+<span class="ar-only">رحلة العلاج معنا</span>
+<span class="en-only">The Treatment Journey</span>
+</h2>
+</div>
+​<div class="timeline">
+<div class="timeline-container left-timeline fade-up-element">
+<div class="timeline-content">
+<span class="timeline-step-num">Step 01</span>
+<h3 class="ar-only">حجز الاستشارة</h3>
+<h3 class="en-only">Book Appointment</h3>
+<p class="ar-only">ابدأ بالتواصل معنا لحجز موعد استشارتك الأولى بسهولة تامة عبر الواتساب أو الهاتف.</p>
+<p class="en-only">Start by reaching out to confirm your slot easily via WhatsApp or direct call.</p>
+</div>
+</div>
+​<div class="timeline-container right-timeline fade-up-element">
+<div class="timeline-content">
+<span class="timeline-step-num">Step 02</span>
+<h3 class="ar-only">التقييم الطبي الشامل</h3>
+<h3 class="en-only">Medical Assessment</h3>
+<p class="ar-only">نقوم بإجراء تحليل دقيق لتكوين الجسم ومراجعة التاريخ الطبي الكامل بدقة وخصوصية.</p>
+<p class="en-only">We conduct absolute precise body composition analysis and comprehensive health record reviews.</p>
+</div>
+</div>
+​<div class="timeline-container left-timeline fade-up-element">
+<div class="timeline-content">
+<span class="timeline-step-num">Step 03</span>
+<h3 class="ar-only">خطة التغذية الشخصية</h3>
+<h3 class="en-only">Personalized Nutrition Plan</h3>
+<p class="ar-only">نصمم برنامجك الخاص المبني كلياً على تفضيلاتك الغذائية واحتياجات جسمك الدقيقة.</p>
+<p class="en-only">We architecture your completely individual program based strictly on your cellular and lifestyle needs.</p>
+</div>
+</div>
+​<div class="timeline-container right-timeline fade-up-element">
+<div class="timeline-content">
+<span class="timeline-step-num">Step 04</span>
+<h3 class="ar-only">زيارات المتابعة الدورية</h3>
+<h3 class="en-only">Follow-up Visits</h3>
+<p class="ar-only">مراجعة مستمرة لتتبع التقدم المحرز بدقة، تعديل الأهداف، وتقديم الدعم النفسي والبدني.</p>
+<p class="en-only">Regular check-ins to monitor adjustments, evaluate metrics, and fine-tune behavioral strategy.</p>
+</div>
+</div>
+​<div class="timeline-container left-timeline fade-up-element">
+<div class="timeline-content">
+<span class="timeline-step-num">Step 05</span>
+<h3 class="ar-only">تحقيق نتائج مستدامة</h3>
+<h3 class="en-only">Achieve Sustainable Results</h3>
+<p class="ar-only">الوصول لوزنك المثالي وصحتك المنشودة والتمتع بنمط حياة متوازن ودائم.</p>
+<p class="en-only">Reaching your prime target weight and possessing a state of complete sustainable wellness.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+​<section id="faq" class="section-padding" aria-labelledby="faq-heading">
+<div class="container">
+<div class="section-header fade-up-element">
+<h2 id="faq-heading">
+<span class="ar-only">الأسئلة الشائعة</span>
+<span class="en-only">Frequently Asked Questions</span>
+</h2>
+</div>
+​<div class="faq-wrapper">
+<div class="faq-item fade-up-element">
+<button class="faq-trigger" aria-expanded="false">
+<span class="ar-only">ماذا يحدث في الاستشارة الأولى؟</span>
+<span class="en-only">What happens during the first consultation?</span>
+<div class="faq-icon-box">
+<svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+</div>
+</button>
+<div class="faq-content">
+<div class="faq-content-inner">
+<p class="ar-only">تتضمن الاستشارة الأولى تقييماً كاملاً وتفصيلياً للحالة الصحية، قياس مكونات الجسم بجهاز الـ InBody، وفهم الأهداف لتصميم الخطة الشخصية المخصصة.</p>
+<p class="en-only">The first consultation entails a full, thorough health evaluation, body configuration stats via InBody tech, and setting the baseline architecture for your customized routine.</p>
+</div>
+</div>
+</div>
+​<div class="faq-item fade-up-element">
+<button class="faq-trigger" aria-expanded="false">
+<span class="ar-only">هل الأنظمة الغذائية تعتمد على الحرمان؟</span>
+<span class="en-only">Are the diet programs built on deprivation?</span>
+<div class="faq-icon-box">
+<svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+</div>
+</button>
+<div class="faq-content">
+<div class="faq-content-inner">
+<p class="ar-only">بالتأكيد لا. نحن نؤمن تماماً أن الحرمان القاسي يؤدي إلى نتائج مؤقتة وفشل مستقبلي. برامجنا مرنة ومصممة لتستمتع بطعامك المفضل مع تحقيق أهدافك.</p>
+<p class="en-only">Absolutely not. We fundamentally believe extreme deprivation yields only short-lived results. Our structures remain flexible so you enjoy nutrition while hitting metrics.</p>
+</div>
+</div>
+</div>
+​<div class="faq-item fade-up-element">
+<button class="faq-trigger" aria-expanded="false">
+<span class="ar-only">كيف يمكنني المتابعة مع العيادة؟</span>
+<span class="en-only">How do follow-ups work with the clinic?</span>
+<div class="faq-icon-box">
+<svg viewBox="0 0 24 24"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+</div>
+</button>
+<div class="faq-content">
+<div class="faq-content-inner">
+<p class="ar-only">المتابعة تتم بشكل دوري في العيادة لمراجعة التغييرات الحيوية وتعديل الأنظمة مع توفير دعم متكامل ومستمر عبر الواتساب للإجابة عن تساؤلاتك الحالية واليومية.</p>
+<p class="en-only">Follow-ups take place structurally in-clinic to track biological transitions, alongside constant continuous chat channels via WhatsApp to clear any daily uncertainties.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+​<section id="location" class="section-padding" aria-labelledby="location-heading">
+<div class="container">
+<div class="location-grid">
+<div class="map-wrapper fade-up-element">
+<iframe src="[https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.13456789!2d31.2354876!3d30.0444196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAyJzM5LjkiTiAzMcKwMTQnMDcuOCJF!5e0!3m2!1sar!2seg!4v1625000000000!5m2!1sar!2seg](https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3451.13456789!2d31.2354876!3d30.0444196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDAyJzM5LjkiTiAzMcKwMTQnMDcuOCJF!5e0!3m2!1sar!2seg!4v1625000000000!5m2!1sar!2seg)" allowfullscreen="" loading="lazy" aria-label="Clinic Location Map"></iframe>
+</div>
+​<div class="location-card fade-up-element">
+<h3 id="location-heading">
+<span class="ar-only">شرفنا بزيارتك</span>
+<span class="en-only">Visit Our Clinic</span>
+</h3>
+​<div class="info-row">
+<div class="info-icon">
+<svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+</div>
+<div class="info-text">
+<h4 class="ar-only">عنوان العيادة</h4>
+<h4 class="en-only">Clinic Address</h4>
+<p class="ar-only">مصر، القاهرة الكبرى — العيادة مجهزة بالكامل لاستقبالكم</p>
+<p class="en-only">Greater Cairo, Egypt — Fully optimized and equipped facilities</p>
+</div>
+</div>
+​<div class="info-row">
+<div class="info-icon">
+<svg viewBox="0 0 24 24"><path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.2c.28-.27.36-.66.25-1.02C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"/></svg>
+</div>
+<div class="info-text">
+<h4 class="ar-only">تواصل معنا</h4>
+<h4 class="en-only">Contact Details</h4>
+<p>+20 109 291 0870</p>
+</div>
+</div>
+​<div class="location-actions">
+<a href="[https://wa.me/201092910870](https://wa.me/201092910870)" class="btn btn-whatsapp" target="_blank" rel="noopener">
+<svg width="20" height="20" fill="white" viewBox="0 0 24 24" style="margin-inline-end: 8px;"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397 0 11.966 0c3.178.001 6.169 1.24 8.413 3.488 2.244 2.247 3.48 5.236 3.48 8.414-.004 6.557-5.343 11.907-11.91 11.907-2.013-.001-3.989-.513-5.734-1.494L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.775 1.451 5.436 0 9.86-4.413 9.863-9.83.001-2.624-1.023-5.092-2.884-6.953C16.48 1.962 14.017 .939 11.398.939c-5.437 0-9.863 4.414-9.866 9.831-.001 1.662.453 3.284 1.315 4.721l-.11.192L1.68 19.9l4.312-1.13.209.124zM17.97 15.1c-.28-.14-1.654-.816-1.91-.908-.255-.093-.442-.14-.627.14-.186.28-.718.908-.88 1.093-.163.186-.326.21-.606.07-.28-.14-1.182-.435-2.251-1.39-1.353-1.21-1.91-1.534-2.186-2-.276-.465-.03-.717.11-.856.127-.125.28-.326.42-.49.14-.163.186-.28.28-.465.093-.186.046-.35-.023-.49-.07-.14-.627-1.512-.86-2.07-.226-.544-.455-.47-.627-.47h-.535c-.186 0-.49.07-.746.35-.256.28-.978.956-.978 2.33 0 1.375 1.002 2.705 1.142 2.89.14.187 1.973 3.012 4.777 4.22.668.288 1.19.46 1.597.59.672.214 1.284.184 1.767.112.54-.08 1.654-.675 1.887-1.327.233-.652.233-1.21.163-1.327-.07-.116-.256-.186-.536-.327z"/></svg>
+WhatsApp
+</a>
+<a href="tel:+201092910870" class="btn btn-primary">
+<span class="ar-only">اتصال تلفني</span>
+<span class="en-only">Call Clinic</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+​<section class="section-padding" id="cta-section" aria-label="Call to Action">
+<div class="container">
+<div class="cta-box fade-up-element">
+<h2>
+<span class="ar-only">جاهز لبدء رحلتك نحو صحة أفضل؟</span>
+<span class="en-only">Ready to begin your journey?</span>
+</h2>
+<p>
+<span class="ar-only">احصل على استشارة مخصصة بالكامل واصنع الفارق الحقيقي في نمط حياتك اليوم.</span>
+<span class="en-only">Secure your exclusive clinical appointment slot today and observe genuine long-term lifestyle transformation.</span>
+</p>
+<a href="[https://wa.me/201092910870](https://wa.me/201092910870)" class="btn btn-outline" style="background: var(--white); color: var(--primary);" target="_blank" rel="noopener">
+<span class="ar-only">ابدأ رحلتك الآن</span>
+<span class="en-only">Start Your Journey Now</span>
+</a>
+</div>
+</div>
+</section>
+​<footer>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<h3>د. أسيل هشام</h3>
+<p class="ar-only">رعاية متخصصة في التغذية العلاجية وإدارة السمنة بأحدث الطرق العلمية والأنظمة المصممة بشكل فردي نقي.</p>
+<p class="en-only">Premium dedicated clinical assistance in metabolic management and tailored nutritional architecture.</p>
+</div>
+​<div class="footer-links">
+<h4>
+<span class="ar-only">روابط سريعة</span>
+<span class="en-only">Quick Links</span>
+</h4>
+<ul>
+<li><a href="#hero"><span class="ar-only">الرئيسية</span><span class="en-only">Home</span></a></li>
+<li><a href="#why-choose"><span class="ar-only">لماذا تختارنا</span><span class="en-only">Why Choose Us</span></a></li>
+<li><a href="#about"><span class="ar-only">من أنا</span><span class="en-only">About Me</span></a></li>
+<li><a href="#services"><span class="ar-only">خدماتنا</span><span class="en-only">Services</span></a></li>
+<li><a href="#faq"><span class="ar-only">الأسئلة الشائعة</span><span class="en-only">FAQ</span></a></li>
+</ul>
+</div>
+​<div class="footer-contact">
+<h4>
+<span class="ar-only">قنوات التواصل</span>
+<span class="en-only">Get In Touch</span>
+</h4>
+<p>WhatsApp / Phone: +201092910870</p>
+<p>Email: info@draseelhisham.com</p>
+</div>
+</div>
+​<div class="footer-divider"></div>
+​<div class="footer-bottom">
+<p>© 2026 Dr. Aseel Hisham. All Rights Reserved.</p>
+<div class="medical-disclaimer">
+<p class="ar-only">إخلاء مسؤولية طبي: المحتوى المتوفر على هذا الموقع الإلكتروني مخصص للأغراض التوعوية والتثقيفية فقط، ولا يمكن اعتباره بأي حال من الأحوال بديلاً عن الاستشارة الطبية المتخصصة أو التشخيص أو العلاج من قبل الطبيب المعالج.</p>
+<p class="en-only">Medical Disclaimer: Content populated within this domain infrastructure operates solely under informational profiles and cannot be leveraged as alternative replacements to formal custom clinical treatment suggestions from certified practitioners.</p>
+</div>
+</div>
+</div>
+</footer>
+​<script>
+document.addEventListener('DOMContentLoaded', () => {
+​// GLOBAL TRANSLATION LANGUAGE CONFIGURATION
+const langBtn = document.getElementById('lang-btn');
+const htmlNode = document.documentElement;
+const bodyNode = document.body;
+​langBtn.addEventListener('click', () => {
+const currentLang = htmlNode.getAttribute('lang');
+if (currentLang === 'ar') {
+htmlNode.setAttribute('lang', 'en');
+htmlNode.setAttribute('dir', 'ltr');
+bodyNode.classList.add('en');
+langBtn.textContent = 'AR';
+} else {
+htmlNode.setAttribute('lang', 'ar');
+htmlNode.setAttribute('dir', 'rtl');
+bodyNode.classList.remove('en');
+langBtn.textContent = 'EN';
+}
+});
+​// RESPONSIVE MOBILE MENU
+const menuToggle = document.getElementById('menu-toggle');
+const navMenu = document.getElementById('nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
+​const toggleMenu = () => {
+const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+menuToggle.setAttribute('aria-expanded', !isExpanded);
+menuToggle.classList.toggle('active');
+navMenu.classList.toggle('active');
 };
-
-let currentLang = 'ar';
-
-function applyLang(lang){
-  currentLang = lang;
-  const dict = translations[lang];
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const key = el.getAttribute('data-i18n');
-    if(dict[key]) el.innerHTML = dict[key];
-  });
-  document.documentElement.lang = lang;
-  document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-  document.getElementById('langToggle').textContent = lang === 'ar' ? 'EN' : 'AR';
-}
-
-document.getElementById('langToggle').addEventListener('click', ()=>{
-  applyLang(currentLang === 'ar' ? 'en' : 'ar');
+​menuToggle.addEventListener('click', toggleMenu);
+navLinks.forEach(link => link.addEventListener('click', () => {
+if(navMenu.classList.contains('active')) toggleMenu();
+}));
+​// SCROLL PROGRESS BAR INDICATOR
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+const scrolled = (winScroll / height) * 100;
+progressBar.style.width = scrolled + '%';
 });
-
-/* ============ HERO CAROUSEL (auto every 4s) ============ */
-const heroImages = [
-  "https://lh3.googleusercontent.com/d/1D4xJixUdRgeGXjDlYXQvxpxLIH_ALkMU=w1600",
-  "https://lh3.googleusercontent.com/d/1EfB0Ba2jdEcN2cv2V1px0V5_k9NatUoE=w1600",
-  "https://lh3.googleusercontent.com/d/1boAm2EG87Pyra--xY3aGON7biUH19P4J=w1600",
-  "https://lh3.googleusercontent.com/d/1D5W9tv85EPfIitgUB4PWoWzAuj_yNhz_=w1600"
-];
-const slidesEl = document.getElementById('heroSlides');
-const dotsEl = document.getElementById('heroDots');
-let slideIndex = 0;
-let slideTimer;
-
-heroImages.forEach((src,i)=>{
-  const div = document.createElement('div');
-  div.className = 'hero-slide' + (i===0 ? ' active' : '');
-  div.style.backgroundImage = `url('${src}')`;
-  slidesEl.appendChild(div);
-
-  const dot = document.createElement('button');
-  if(i===0) dot.classList.add('active');
-  dot.addEventListener('click', ()=> goToSlide(i));
-  dotsEl.appendChild(dot);
+​// LUXURY HERO AUTOMATED BACKGROUND SLIDER (4 seconds transition loop)
+const slides = document.querySelectorAll('.slide');
+let currentSlideIndex = 0;
+​setInterval(() => {
+slides[currentSlideIndex].classList.remove('active');
+currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+slides[currentSlideIndex].classList.add('active');
+}, 4000);
+​// FAQ SINGLE OPEN ACCORDION LOGIC
+const faqItems = document.querySelectorAll('.faq-item');
+​faqItems.forEach(item => {
+const trigger = item.querySelector('.faq-trigger');
+const content = item.querySelector('.faq-content');
+​trigger.addEventListener('click', () => {
+const isActive = item.classList.contains('active');
+​// Close all active FAQs as strict requirement indicates single item toggle only
+faqItems.forEach(i => {
+i.classList.remove('active');
+i.querySelector('.faq-trigger').setAttribute('aria-expanded', 'false');
+i.querySelector('.faq-content').style.maxHeight = null;
 });
-
-const slideEls = document.querySelectorAll('.hero-slide');
-const dotEls = document.querySelectorAll('.hero-dots button');
-
-function goToSlide(i){
-  slideEls[slideIndex].classList.remove('active');
-  dotEls[slideIndex].classList.remove('active');
-  slideIndex = i;
-  slideEls[slideIndex].classList.add('active');
-  dotEls[slideIndex].classList.add('active');
+​if (!isActive) {
+item.classList.add('active');
+trigger.setAttribute('aria-expanded', 'true');
+content.style.maxHeight = content.scrollHeight + 'px';
 }
-
-function nextSlide(){
-  goToSlide((slideIndex + 1) % slideEls.length);
-}
-
-function startAutoplay(){
-  slideTimer = setInterval(nextSlide, 4000);
-}
-function stopAutoplay(){
-  clearInterval(slideTimer);
-}
-startAutoplay();
-document.querySelector('.hero').addEventListener('mouseenter', stopAutoplay);
-document.querySelector('.hero').addEventListener('mouseleave', startAutoplay);
-
-/* ============ FAQ ACCORDION ============ */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  item.querySelector('.faq-q').addEventListener('click', ()=>{
-    const isOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!isOpen) item.classList.add('open');
-  });
 });
-
-/* ============ MOBILE MENU ============ */
-document.getElementById('burger').addEventListener('click', ()=>{
-  const nav = document.querySelector('nav.links');
-  const isVisible = nav.style.display === 'flex';
-  nav.style.display = isVisible ? 'none' : 'flex';
-  nav.style.cssText += isVisible ? '' : 'position:absolute; top:100%; inset-inline-start:0; inset-inline-end:0; background:#fff; flex-direction:column; padding:20px 28px; gap:16px; border-bottom:1px solid var(--line);';
 });
-
-/* ============ SCROLL REVEAL ============ */
-const observer = new IntersectionObserver((entries)=>{
-  entries.forEach(entry=>{
-    if(entry.isIntersecting){
-      entry.target.classList.add('in');
-      observer.unobserve(entry.target);
-    }
-  });
-}, { threshold: 0.15 });
-document.querySelectorAll('.reveal').forEach(el=> observer.observe(el));
-
-/* ============ INIT ============ */
-applyLang('ar');
+​// HIGH-PERFORMANCE INTERSECTION OBSERVER FOR VISUAL SCROLL REVEALS
+const animatedElements = document.querySelectorAll('.fade-up-element');
+​const observerOptions = {
+root: null,
+threshold: 0.1,
+rootMargin: '0px 0px -40px 0px'
+};
+​const revealCallback = (entries, observer) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+entry.target.classList.add('visible');
+observer.unobserve(entry.target); // Optimize processing resources once triggered
+}
+});
+};
+​const elementObserver = new IntersectionObserver(revealCallback, observerOptions);
+animatedElements.forEach(element => elementObserver.observe(element));
+​// BUTTON RIPPLE CLICK ANIMATION
+const buttons = document.querySelectorAll('.btn');
+buttons.forEach(btn => {
+btn.addEventListener('click', function(e) {
+const circle = document.createElement('span');
+const diameter = Math.max(this.clientWidth, this.clientHeight);
+const radius = diameter / 2;
+​circle.style.width = circle.style.height = ${diameter}px;
+circle.style.left = ${e.clientX - this.getBoundingClientRect().left - radius}px;
+circle.style.top = ${e.clientY - this.getBoundingClientRect().top - radius}px;
+circle.style.position = 'absolute';
+circle.style.borderRadius = '50%';
+circle.style.transform = 'scale(0)';
+circle.style.background = 'rgba(255, 255, 255, 0.3)';
+circle.style.animation = 'ripple 0.6s linear';
+​const prevRipple = this.querySelector('.ripple-effect');
+if (prevRipple) prevRipple.remove();
+​circle.classList.add('ripple-effect');
+this.appendChild(circle);
+});
+});
+});
 </script>
+​<style>
+@keyframes ripple {
+to {
+transform: scale(4);
+opacity: 0;
+}
+}
+</style>
 </body>
 </html>
